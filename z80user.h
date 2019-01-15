@@ -129,13 +129,12 @@ extern "C" {
 
 #define Z80_INPUT_BYTE(port, x)                                         \
 {                                                                       \
-        SystemCall((ZEXTEST *) context);				\
+        x = port_in(context, port);						\
 }
 
 #define Z80_OUTPUT_BYTE(port, x)                                        \
 {                                                                       \
-        ((ZEXTEST *) context)->is_done = !0; 				\
-        number_cycles = 0;                                              \
+        port_out(context, port,x);						\
 }
 
 #ifdef __cplusplus
